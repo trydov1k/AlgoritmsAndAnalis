@@ -114,4 +114,17 @@ public class HashTableChaining<TKey, TValue>
         }
         return false;
     }
+    
+    public IEnumerable<TKey> GetKeys()
+    {
+        foreach (var head in _table)
+        {
+            var node = head;
+            while (node is not null)
+            {
+                yield return node.Key;
+                node = node.Next;
+            }
+        }
+    }
 }

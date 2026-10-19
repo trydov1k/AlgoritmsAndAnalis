@@ -9,7 +9,7 @@ public static class Task3
         var strArr = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         int i = 0;
         
-        var set = new HashSet<int>();
+        var set = new Algorithms.Structures.HashSet<int>();
         
         while (i < strArr.Length && strArr[i] != "0")
             set.Add(int.Parse(strArr[i++]));
@@ -27,4 +27,5 @@ public static class Task3
         
         return result;
     }
+    
 }
