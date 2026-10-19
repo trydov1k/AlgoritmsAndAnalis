@@ -3,8 +3,8 @@
 // Первый вошёл, первый вышел
 public class Queue<T>
 {
-    private Node<T>? Head { get; set; } = null; // голова (начало)
-    private Node<T>? Tail { get; set; }  // хвост (конец)
+    private Node<T>? Head { get; set; } // голова (начало)
+    private Node<T>? Tail { get; set; } // хвост (конец)
 
     public void Enqueue(T item)
     {
@@ -25,13 +25,13 @@ public class Queue<T>
     {
         if (Head == null)
             throw new InvalidOperationException("Queue is empty");
-        
+
         var node = Head;
         Head = Head.Next;
-        
+
         if (Head == null)
             Tail = null;
-        
+
         return node.Value;
     }
 
@@ -39,10 +39,10 @@ public class Queue<T>
     {
         if (Head == null)
             throw new InvalidOperationException("Queue is empty");
-        
+
         return Head.Value;
     }
-    
+
     private class Node<T>
     {
         public T? Value { get; set; }

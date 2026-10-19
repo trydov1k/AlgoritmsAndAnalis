@@ -36,26 +36,28 @@ public class BinaryHeap
 
     private void SiftUp(int index)
     {
-        while (index > 0) {
+        while (index > 0)
+        {
             var parentIndex = (index - 1) / 2;
-            if (_array[parentIndex] <= _array[index]) 
+            if (_array[parentIndex] <= _array[index])
                 break;
             Swap(index, parentIndex);
             index = parentIndex;
         }
     }
-    
-    private void SiftDown(int index) {
+
+    private void SiftDown(int index)
+    {
         while (true)
         {
             var leftChildrenIndex = 2 * index + 1;
             var rightChildrenIndex = 2 * index + 2;
             var smallestIndex = index;
-            if (leftChildrenIndex < _pointer && _array[leftChildrenIndex] < _array[smallestIndex]) 
+            if (leftChildrenIndex < _pointer && _array[leftChildrenIndex] < _array[smallestIndex])
                 smallestIndex = leftChildrenIndex;
-            if (rightChildrenIndex < _pointer && _array[rightChildrenIndex] < _array[smallestIndex]) 
+            if (rightChildrenIndex < _pointer && _array[rightChildrenIndex] < _array[smallestIndex])
                 smallestIndex = rightChildrenIndex;
-            if (smallestIndex == index) 
+            if (smallestIndex == index)
                 break;
             Swap(smallestIndex, index);
             index = smallestIndex;

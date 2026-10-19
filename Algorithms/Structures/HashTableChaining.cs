@@ -1,29 +1,22 @@
 ﻿namespace Algorithms.Structures;
 
 /// <summary>
-/// Хеш-таблица по методу цепочек
+///     Хеш-таблица по методу цепочек
 /// </summary>
 public class HashTableChaining<TKey, TValue>
     where TKey : notnull
 {
-    private sealed class Node(TKey key, TValue value, Node? next)
-    {
-        public TKey Key { get; } = key;
-        public TValue Value { get; set; } = value;
-        public Node? Next { get; set; } = next;
-    }
-
     private const double MaxLoadFactor = 0.75;
+    private int _currentSize;
 
     private Node?[] _table;
-    private int _currentSize;
 
     public HashTableChaining(int capacity)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(capacity);
         _table = new Node[capacity];
     }
-    
+
     private int GetHash(TKey key)
     {
         ArgumentNullException.ThrowIfNull(key);
@@ -39,6 +32,7 @@ public class HashTableChaining<TKey, TValue>
                 return node.Value;
             node = node.Next;
         }
+
         throw new KeyNotFoundException($"Key {key} not found");
     }
 
@@ -53,8 +47,10 @@ public class HashTableChaining<TKey, TValue>
                 node.Value = value;
                 return;
             }
+
             node = node.Next;
         }
+
         _table[index] = new Node(key, value, _table[index]);
 
         _currentSize++;
@@ -82,7 +78,7 @@ public class HashTableChaining<TKey, TValue>
     {
         var index = GetHash(key);
         Node? previous = null;
-        Node? current = _table[index];
+        var current = _table[index];
         while (current is not null)
         {
             if (current.Key.Equals(key))
@@ -94,14 +90,18 @@ public class HashTableChaining<TKey, TValue>
                 _currentSize--;
                 return current.Value;
             }
+
             previous = current;
             current = current.Next;
         }
+
         throw new KeyNotFoundException($"Key {key} not found");
     }
-    
+
     public int Size()
-        =>  _currentSize;
+    {
+        return _currentSize;
+    }
 
     public bool ContainsKey(TKey key)
     {
@@ -112,9 +112,10 @@ public class HashTableChaining<TKey, TValue>
                 return true;
             node = node.Next;
         }
+
         return false;
     }
-    
+
     public IEnumerable<TKey> GetKeys()
     {
         foreach (var head in _table)
@@ -126,5 +127,12 @@ public class HashTableChaining<TKey, TValue>
                 node = node.Next;
             }
         }
+    }
+
+    private sealed class Node(TKey key, TValue value, Node? next)
+    {
+        public TKey Key { get; } = key;
+        public TValue Value { get; set; } = value;
+        public Node? Next { get; set; } = next;
     }
 }

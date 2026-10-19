@@ -4,25 +4,22 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using Perfolizer.Horology;
 using Perfolizer.Metrology;
-using BenchmarkDotNet.Loggers;
 
 namespace Benchmark.Configs;
 
 public class MyConfig : ManualConfig
 {
-    public MyConfig() 
+    public MyConfig()
         : this(
-            true, 
-            false, 
-            SummaryOrderPolicy.Declared, 
-            null, 
-            null)
-    { }
-    
+            true)
+    {
+    }
+
     public MyConfig(
         bool memoryDiagnoser = true,
         bool rankColumn = false,
@@ -34,11 +31,11 @@ public class MyConfig : ManualConfig
         int? iterationCount = null)
     {
         AddLogger(ConsoleLogger.Default);
-        
+
         // Столбцы, которые хотим видеть
-        AddColumn(TargetMethodColumn.Method);          // Method    
-        AddColumn(StatisticColumn.Mean);               // Mean
-        
+        AddColumn(TargetMethodColumn.Method); // Method    
+        AddColumn(StatisticColumn.Mean); // Mean
+
         AddColumnProvider(
             DefaultColumnProviders.Params,
             DefaultColumnProviders.Metrics
@@ -53,25 +50,25 @@ public class MyConfig : ManualConfig
             "Job", "Runtime", "IterationCount", "LaunchCount",
             "WarmupCount", "InvocationCount", "UnrollFactor"
         );
-        
+
         if (memoryDiagnoser)
             AddDiagnoser(MemoryDiagnoser.Default);
 
         if (rankColumn)
             AddColumn(RankColumn.Arabic);
-        
+
         WithOrderer(new DefaultOrderer(orderPolicy));
 
         var style = new SummaryStyle(
-            cultureInfo: CultureInfo.CurrentCulture,
-            printUnitsInHeader: true,
-            sizeUnit: sizeUnit,
-            timeUnit: timeUnit,
-            printUnitsInContent: false
+            CultureInfo.CurrentCulture,
+            true,
+            sizeUnit,
+            timeUnit,
+            false
         );
 
         WithSummaryStyle(style);
-        
+
         var job = Job.Default;
 
         if (launchCount is int launches)
@@ -84,7 +81,7 @@ public class MyConfig : ManualConfig
             job = job.WithIterationCount(iterations);
 
         AddJob(job);
-        
+
         AddExporter(MarkdownExporter.GitHub);
     }
 }

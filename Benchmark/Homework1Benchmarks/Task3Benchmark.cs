@@ -8,10 +8,10 @@ namespace Benchmark.HomeWork1Benchmarks;
 public class Task3Benchmark
 {
     private string _input;
-    [Params(100, 1_000, 10_000)] 
-    public int LeftArraySize;
-    [Params(100, 1_000, 10_000)]
-    public int RightArraySize;
+
+    [Params(100, 1_000, 10_000)] public int LeftArraySize;
+
+    [Params(100, 1_000, 10_000)] public int RightArraySize;
 
     [GlobalSetup]
     public void Setup()
@@ -25,5 +25,8 @@ public class Task3Benchmark
     }
 
     [Benchmark]
-    public int[] TestSolve() => Task3.Solve(_input);
+    public int[] TestSolve()
+    {
+        return Task3.Solve(_input);
+    }
 }

@@ -9,8 +9,7 @@ public class HashTableChainingTests
     [InlineData(-1)]
     public void Constructor_NonPositiveCapacity_Throws(int capacity)
     {
-        Assert.Throws<ArgumentOutOfRangeException>(
-            () => new HashTableChaining<int, string>(capacity));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new HashTableChaining<int, string>(capacity));
     }
 
     [Fact]
@@ -108,14 +107,11 @@ public class HashTableChainingTests
         Assert.Equal($"value-{removedId}", removedValue);
         Assert.Equal(2, table.Size());
         Assert.False(table.ContainsKey(new CollisionKey(removedId)));
-        Assert.Throws<KeyNotFoundException>(
-            () => table.Get(new CollisionKey(removedId)));
+        Assert.Throws<KeyNotFoundException>(() => table.Get(new CollisionKey(removedId)));
 
         for (var i = 1; i <= 3; i++)
-        {
             if (i != removedId)
                 Assert.Equal($"value-{i}", table.Get(new CollisionKey(i)));
-        }
     }
 
     [Fact]
@@ -209,16 +205,24 @@ public class HashTableChainingTests
 
     private sealed class CollisionKey(int id)
     {
-        public override int GetHashCode() => 1;
+        private int Id => id;
+
+        public override int GetHashCode()
+        {
+            return 1;
+        }
 
         public override bool Equals(object? obj)
-            => obj is CollisionKey other && id == other.Id;
-
-        private int Id => id;
+        {
+            return obj is CollisionKey other && id == other.Id;
+        }
     }
 
     private sealed record FixedHashKey(int Id, int Hash)
     {
-        public override int GetHashCode() => Hash;
+        public override int GetHashCode()
+        {
+            return Hash;
+        }
     }
 }

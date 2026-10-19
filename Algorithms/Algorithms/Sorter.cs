@@ -15,10 +15,10 @@ public static class Sorter
             return;
 
         var mid = left + (right - left) / 2;
-        
+
         MergeSort(array, buffer, left, mid);
         MergeSort(array, buffer, mid + 1, right);
-        
+
         Merge(array, buffer, left, mid, right);
     }
 
@@ -27,7 +27,7 @@ public static class Sorter
         var i = left;
         var j = mid + 1;
         var bufferIndex = left;
-        
+
         while (i <= mid && j <= right)
         {
             if (array[i] <= array[j])
@@ -40,6 +40,7 @@ public static class Sorter
                 buffer[bufferIndex] = array[j];
                 j++;
             }
+
             bufferIndex++;
         }
 
@@ -56,11 +57,11 @@ public static class Sorter
             j++;
             bufferIndex++;
         }
-        
-        for (int t = left; t <= right; t++)
+
+        for (var t = left; t <= right; t++)
             array[t] = buffer[t];
     }
-    
+
     // Quick sort
     public static void QuickSort(int[] array)
     {
@@ -71,14 +72,13 @@ public static class Sorter
     {
         while (left < right)
         {
-
-            int randomIndex = Random.Shared.Next(left, right + 1);
+            var randomIndex = Random.Shared.Next(left, right + 1);
             Swap(array, randomIndex, left);
 
             var (lt, gt) = Partition3Way(array, left, right);
 
-            int leftSize = lt - left;
-            int rightSize = right - gt;
+            var leftSize = lt - left;
+            var rightSize = right - gt;
 
             if (leftSize < rightSize)
             {
@@ -96,21 +96,19 @@ public static class Sorter
     private static (int lt, int gt) Partition3Way(int[] array, int left, int right)
     {
         var pivot = array[left];
-        
+
         var lt = left;
         var i = left + 1;
         var gt = right;
 
         while (i <= gt)
-        {
             if (array[i] < pivot)
                 Swap(array, lt++, i++);
             else if (array[i] > pivot)
                 Swap(array, i, gt--);
             else
                 i++;
-        }
-        
+
         return (lt, gt);
     }
 
@@ -120,35 +118,35 @@ public static class Sorter
         array[i] = array[j];
         array[j] = temp;
     }
-    
+
     // Counting sort
     public static int[] CountingSort(int[] array, int k)
     {
-        int n = array.Length;
+        var n = array.Length;
         var cnt = new int[k];
-        
+
         foreach (var i in array)
             cnt[i]++;
-        
+
         for (var i = 1; i < k; i++)
             cnt[i] += cnt[i - 1];
 
         var outArray = new int[n];
         for (var i = n - 1; i >= 0; i--)
             outArray[--cnt[array[i]]] = array[i];
-        
+
         return outArray;
     }
-    
+
     // HeapSort
     public static void HeapSort(int[] arr)
     {
-        int n = arr.Length;
+        var n = arr.Length;
 
-        for (int i = n / 2 - 1; i >= 0; i--)
+        for (var i = n / 2 - 1; i >= 0; i--)
             SiftDown(arr, n, i);
 
-        for (int end = n - 1; end > 0; end--)
+        for (var end = n - 1; end > 0; end--)
         {
             (arr[0], arr[end]) = (arr[end], arr[0]);
             SiftDown(arr, end, 0);
@@ -160,9 +158,9 @@ public static class Sorter
     {
         while (true)
         {
-            int left = 2 * index + 1;
-            int right = 2 * index + 2;
-            int largest = index;
+            var left = 2 * index + 1;
+            var right = 2 * index + 2;
+            var largest = index;
 
             if (left < size && arr[left] > arr[largest])
                 largest = left;

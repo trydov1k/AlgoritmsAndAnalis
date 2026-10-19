@@ -13,15 +13,15 @@ public class SorterBenchmark
 {
     private int[] _array;
     private int maxValue;
-    [Params(100)]
-    public int Size;
-    
+
+    [Params(100)] public int Size;
+
     [GlobalSetup]
     public void Setup()
     {
         _array = new int[Size];
         var rnd = new Random(42);
-        for (int i = 0; i < Size; i++)
+        for (var i = 0; i < Size; i++)
         {
             var rndValue = rnd.Next(Size - 10);
             if (rndValue > maxValue)
@@ -45,6 +45,6 @@ public class SorterBenchmark
     [Benchmark]
     public void CountingSort()
     {
-        Sorter.CountingSort(_array, maxValue+1);
+        Sorter.CountingSort(_array, maxValue + 1);
     }
 }

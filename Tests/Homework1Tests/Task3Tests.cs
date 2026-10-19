@@ -6,7 +6,7 @@ namespace Tests;
 public class Task3Tests
 {
     [Theory]
-    [InlineData("0 0", "0")]  // Пустое множество
+    [InlineData("0 0", "0")] // Пустое множество
     [InlineData("0 1 20000 0", "1 20000")] // Первое пустое
     [InlineData("1 20000 0 0", "1 20000")] // Второе пустое
     [InlineData("1 3 0 2 4 0", "1 2 3 4")] // Нет общих чисел
@@ -17,13 +17,13 @@ public class Task3Tests
     {
         var result = Task3.Solve(input);
 
-        string actual = result.Length == 0
+        var actual = result.Length == 0
             ? "0"
             : string.Join(" ", result);
 
         Assert.Equal(expected, actual);
     }
-    
+
     [Theory]
     [InlineData(100, 100)]
     [InlineData(10, 100)]

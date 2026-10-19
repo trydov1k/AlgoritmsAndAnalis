@@ -1,7 +1,5 @@
 ﻿namespace Benchmark.Other;
 
-using System;
-
 public static class TestDataGenerator
 {
     public static int[] CreateUniqueArray(
@@ -16,7 +14,7 @@ public static class TestDataGenerator
         if (minValue > maxValue)
             throw new ArgumentException("Неверный диапазон.");
 
-        long rangeSize = (long)maxValue - minValue + 1;
+        var rangeSize = (long)maxValue - minValue + 1;
 
         if (length > rangeSize)
             throw new ArgumentException(
@@ -30,7 +28,7 @@ public static class TestDataGenerator
 
         while (set.Count < length)
         {
-            int number = (int)random.NextInt64(
+            var number = (int)random.NextInt64(
                 minValue, (long)maxValue + 1);
 
             set.Add(number);

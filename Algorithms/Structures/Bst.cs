@@ -20,12 +20,12 @@ public class Bst<T> where T : IComparable<T>
     {
         return Search(_root, value);
     }
-    
+
     private static Node<T> Search(Node<T>? node, T value)
     {
         if (node == null)
             throw new KeyNotFoundException();
-        
+
         var compered = value.CompareTo(node.Value);
 
         return compered switch
@@ -40,13 +40,13 @@ public class Bst<T> where T : IComparable<T>
     {
         _root = Add(_root, value);
     }
-    
+
     private static Node<T> Add(Node<T>? node, T value)
     {
         if (node == null)
             return new Node<T>(value);
         var compered = value.CompareTo(node.Value);
-        
+
         switch (compered)
         {
             case -1:
@@ -91,6 +91,7 @@ public class Bst<T> where T : IComparable<T>
                 break;
             }
         }
+
         return node;
     }
 
@@ -106,8 +107,11 @@ public class Bst<T> where T : IComparable<T>
             temp = temp.Left;
         return temp;
     }
-    
-    public int Height() => Height(_root);
+
+    public int Height()
+    {
+        return Height(_root);
+    }
 
     private static int Height(Node<T>? node)
     {

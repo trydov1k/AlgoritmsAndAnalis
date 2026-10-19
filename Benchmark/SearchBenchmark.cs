@@ -9,12 +9,11 @@ namespace Benchmark;
 [RankColumn]
 public class SearchBenchmark
 {
-    private static readonly Searcher Searcher = new Searcher();
+    private static readonly Searcher Searcher = new();
     private int[] _array;
     private int _numberToSearch;
 
-    [Params(10, 100)] 
-    public int Size;
+    [Params(10, 100)] public int Size;
 
     [GlobalSetup]
     public void Setup()

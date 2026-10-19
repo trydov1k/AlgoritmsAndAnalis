@@ -14,11 +14,11 @@ public class Stack<T>
     {
         if (Count == 0)
             throw new InvalidOperationException("Stack is empty");
-        
+
         var item = _items[Count - 1];
-            
+
         _items.RemoveAt(Count - 1);
-        
+
         return item;
     }
 
@@ -26,7 +26,7 @@ public class Stack<T>
     {
         if (Count == 0)
             throw new InvalidOperationException("Stack is empty");
-        
+
         return _items[Count - 1];
     }
 }
