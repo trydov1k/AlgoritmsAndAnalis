@@ -1,24 +1,18 @@
 ﻿using System.Text;
-using Benchmark.Configs;
 using Benchmark.Other;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Order;
 using HomeWork1;
 
 namespace Benchmark.HomeWork1Benchmarks;
 
-[MemoryDiagnoser]
-[Orderer(SummaryOrderPolicy.Declared)]
-[Config(typeof(MinimalColumnsConfig))]
-[RankColumn]
 public class Task3Benchmark
 {
     private string _input;
     [Params(100, 1_000, 10_000)] 
     public int LeftArraySize;
-    [Params(100, 1_000, 10_000)] 
+    [Params(100, 1_000, 10_000)]
     public int RightArraySize;
-    
+
     [GlobalSetup]
     public void Setup()
     {
@@ -29,7 +23,7 @@ public class Task3Benchmark
         builder.Append(" 0");
         _input = builder.ToString();
     }
-    
+
     [Benchmark]
     public int[] TestSolve() => Task3.Solve(_input);
 }

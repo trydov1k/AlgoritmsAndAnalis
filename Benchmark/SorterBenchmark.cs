@@ -7,7 +7,7 @@ namespace Benchmark;
 
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.Declared)]
-[Config(typeof(MinimalColumnsConfig))]
+[Config(typeof(MyConfig))]
 [RankColumn]
 public class SorterBenchmark
 {
