@@ -16,7 +16,13 @@ using Perfolizer.Metrology;
 //     timeUnit: TimeUnit.Microsecond,
 //     sizeUnit: null));
 
-BenchmarkRunner.Run<Task10Benchmark>(new MyConfig(
+// BenchmarkRunner.Run<Task10Benchmark>(new MyConfig(
+//     timeUnit: TimeUnit.Microsecond,
+//     sizeUnit: SizeUnit.B,
+//     hideMethods: true));
+
+BenchmarkRunner.Run<Task12Benchmark>(new MyConfig(
     timeUnit: TimeUnit.Microsecond,
-    sizeUnit: SizeUnit.B,
+    sizeUnit: null,
     hideMethods: true));
+    
