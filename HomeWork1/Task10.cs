@@ -1,4 +1,6 @@
-﻿namespace HomeWork1;
+﻿using System.Numerics;
+
+namespace HomeWork1;
 
 public static class Task10
 {
@@ -17,7 +19,7 @@ public static class Task10
             friends.Add((pair[0], pair[1]));
         }
 
-        Console.WriteLine(string.Join(" ", 
+        Console.WriteLine(string.Join(" ",
             Solve(n, k, friends)));
     }
 
@@ -25,32 +27,32 @@ public static class Task10
     {
         var minCrossFriendships = int.MaxValue;
         var bestTeamMask = 0;
-        
-        for (var teamMask = 0; teamMask < (1 << n); teamMask++)
+
+        for (var teamMask = 0; teamMask < 1 << n; teamMask++)
         {
-            if (System.Numerics.BitOperations.PopCount((uint)teamMask) != k)
+            if (BitOperations.PopCount((uint)teamMask) != k)
                 continue; // Если установлено не ровно k битов — пропустить маску.
 
-            var crossFriendshipsCount = CountCrossTeamFriendships(teamMask, friends); // Иначе посчитать знакомства между командами.
+            var crossFriendshipsCount =
+                CountCrossTeamFriendships(teamMask, friends); // Иначе посчитать знакомства между командами.
 
-            if (crossFriendshipsCount < minCrossFriendships) // Если их меньше, чем в лучшем варианте, — запомнить маску.
+            if (crossFriendshipsCount <
+                minCrossFriendships) // Если их меньше, чем в лучшем варианте, — запомнить маску.
             {
                 minCrossFriendships = crossFriendshipsCount;
                 bestTeamMask = teamMask;
             }
-            
-            if (minCrossFriendships == 0)  // Ноль — минимально возможное значение, поэтому можно закончить
+
+            if (minCrossFriendships == 0) // Ноль — минимально возможное значение, поэтому можно закончить
                 break;
         }
 
         var result = new List<int>();
-        
+
         for (var teamMemberNumber = 1; teamMemberNumber <= n; teamMemberNumber++)
-        {
             if ((bestTeamMask & PlayerNumberToFlag(teamMemberNumber)) != 0)
                 result.Add(teamMemberNumber);
-        }
-        
+
         return result;
     }
 
@@ -58,7 +60,7 @@ public static class Task10
     {
         return 1 << (playerNumber - 1);
     }
-    
+
     private static int CountCrossTeamFriendships(
         int teamMask, List<(int, int)> friends)
     {

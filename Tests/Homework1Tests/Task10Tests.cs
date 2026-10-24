@@ -14,8 +14,7 @@ public class Task10Tests
 
         result.Should().HaveCount(data.K);
         result.Should().OnlyHaveUniqueItems();
-        result.Should().OnlyContain(
-            player => player >= 1 && player <= data.N);
+        result.Should().OnlyContain(player => player >= 1 && player <= data.N);
 
         var firstTeam = result.ToHashSet();
 

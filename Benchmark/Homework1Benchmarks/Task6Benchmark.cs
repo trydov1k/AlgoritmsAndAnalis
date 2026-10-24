@@ -1,5 +1,4 @@
-﻿using Benchmark.Other;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using HomeWork1;
 using HomeWork1.Other;
 

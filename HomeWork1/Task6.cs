@@ -3,7 +3,7 @@
 public static class Task6
 {
     /// <summary>
-    /// Метод как необходим в задании
+    ///     Метод как необходим в задании
     /// </summary>
     public static void Solve()
     {
@@ -15,23 +15,14 @@ public static class Task6
         var coefficients = new List<int>();
         var values = new List<int>();
 
-        for (var i = 0; i < n + 1; i++)
-        {
-            coefficients.Add(int.Parse(Console.ReadLine()));
-        }
-        for (var i = 0; i < m; i++)
-        {
-            values.Add(int.Parse(Console.ReadLine()));
-        }
-        
-        foreach(var answer in Solve(coefficients, values, mod))
-        {
-            Console.WriteLine(answer);
-        }
+        for (var i = 0; i < n + 1; i++) coefficients.Add(int.Parse(Console.ReadLine()));
+        for (var i = 0; i < m; i++) values.Add(int.Parse(Console.ReadLine()));
+
+        foreach (var answer in Solve(coefficients, values, mod)) Console.WriteLine(answer);
     }
 
     /// <summary>
-    /// Метод, удобный для тестирования
+    ///     Метод, удобный для тестирования
     /// </summary>
     /// <param name="coefficients">коэффициенты ai</param>
     /// <param name="values">значения xi</param>

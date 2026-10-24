@@ -1,6 +1,4 @@
-﻿using System.Text;
-using Benchmark.Other;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using HomeWork1;
 
 namespace Benchmark.HomeWork1Benchmarks;
@@ -18,13 +16,13 @@ public class Task3Benchmark
         "1 2 3 4 5 6 7 8 0 9 10 11 12 0"
     )]
     public string InputString;
-    
+
     [Benchmark]
     public int[] TestSolve()
     {
         return Task3.Solve(InputString);
     }
-    
+
     // private string _randomInput;
     // 
     // [Params(100, 10_000)] public int LeftArraySize;

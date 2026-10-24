@@ -1,6 +1,4 @@
-﻿using HomeWork1.Other;
-
-namespace HomeWork1;
+﻿namespace HomeWork1;
 
 public static class Program
 {
