@@ -23,6 +23,7 @@ public class MyConfig : ManualConfig
     public MyConfig(
         bool memoryDiagnoser = true,
         bool rankColumn = false,
+        bool hideMethods = false,
         SummaryOrderPolicy orderPolicy = SummaryOrderPolicy.Declared,
         TimeUnit? timeUnit = null,
         SizeUnit? sizeUnit = null,
@@ -33,7 +34,8 @@ public class MyConfig : ManualConfig
         AddLogger(ConsoleLogger.Default);
 
         // Столбцы, которые хотим видеть
-        AddColumn(TargetMethodColumn.Method); // Method    
+        if (!hideMethods)
+            AddColumn(TargetMethodColumn.Method); // Method    
         AddColumn(StatisticColumn.Mean); // Mean
 
         AddColumnProvider(
