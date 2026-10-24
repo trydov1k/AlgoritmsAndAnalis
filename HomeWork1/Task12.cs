@@ -5,7 +5,7 @@ public static class Task12
     public static void Solve()
     {
         var n = int.Parse(Console.ReadLine());
-        
+
         var participants = new Participant[n];
 
         for (var i = 0; i < n; i++)
@@ -14,23 +14,13 @@ public static class Task12
             var login = line[0];
             var solved = int.Parse(line[1]);
             var penalty = int.Parse(line[2]);
-            
+
             participants[i] = new Participant(login, solved, penalty);
         }
-        
+
         QuickSortInPlace(participants);
-        
+
         Console.WriteLine(string.Join(" ", participants));
-    }
-    
-    public sealed class Participant(
-        string login,
-        int solved,
-        int penalty)
-    {
-        public string Login { get; } = login.ToLower();
-        public int Solved { get; } = solved;
-        public int Penalty { get; } = penalty;
     }
 
     private static int Compare(Participant first, Participant second)
@@ -79,5 +69,15 @@ public static class Task12
             QuickSortInPlace(array, left, rt);
             left = lt;
         }
+    }
+
+    public sealed class Participant(
+        string login,
+        int solved,
+        int penalty)
+    {
+        public string Login { get; } = login.ToLower();
+        public int Solved { get; } = solved;
+        public int Penalty { get; } = penalty;
     }
 }

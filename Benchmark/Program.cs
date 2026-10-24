@@ -2,7 +2,6 @@
 using Benchmark.HomeWork1Benchmarks;
 using BenchmarkDotNet.Running;
 using Perfolizer.Horology;
-using Perfolizer.Metrology;
 
 //BenchmarkRunner.Run<SearchBenchmark>();
 
@@ -25,4 +24,3 @@ BenchmarkRunner.Run<Task12Benchmark>(new MyConfig(
     timeUnit: TimeUnit.Microsecond,
     sizeUnit: null,
     hideMethods: true));
-    
