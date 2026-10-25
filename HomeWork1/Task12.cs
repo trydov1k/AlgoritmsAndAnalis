@@ -1,4 +1,6 @@
-﻿namespace HomeWork1;
+﻿using Algorithms.Algorithms.Sorters;
+
+namespace HomeWork1;
 
 public static class Task12
 {
@@ -18,7 +20,7 @@ public static class Task12
             participants[i] = new Participant(login, solved, penalty);
         }
 
-        QuickSortInPlace(participants);
+        Sorters.QuickSortInPlace(participants);
 
         Console.WriteLine(string.Join(" ", participants));
     }
@@ -36,48 +38,17 @@ public static class Task12
         return string.CompareOrdinal(first.Login, second.Login);
     }
 
-
-    public static void QuickSortInPlace(Participant[] array)
-    {
-        QuickSortInPlace(array, 0, array.Length - 1);
-    }
-
-    private static void QuickSortInPlace(Participant[] array, int left, int right)
-    {
-        while (true)
-        {
-            if (left >= right) return;
-            var pivot = array[(left + right) / 2];
-
-            var lt = left;
-            var rt = right;
-
-            while (lt <= rt)
-            {
-                while (Compare(array[lt], pivot) < 0) lt++;
-
-                while (Compare(array[rt], pivot) > 0) rt--;
-
-                if (lt <= rt)
-                {
-                    (array[lt], array[rt]) = (array[rt], array[lt]);
-                    lt++;
-                    rt--;
-                }
-            }
-
-            QuickSortInPlace(array, left, rt);
-            left = lt;
-        }
-    }
-
     public sealed class Participant(
         string login,
         int solved,
-        int penalty)
+        int penalty) : IComparable
     {
         public string Login { get; } = login.ToLower();
         public int Solved { get; } = solved;
         public int Penalty { get; } = penalty;
+        public int CompareTo(object? obj)
+        {
+            return Compare(this, obj as Participant);
+        }
     }
 }
