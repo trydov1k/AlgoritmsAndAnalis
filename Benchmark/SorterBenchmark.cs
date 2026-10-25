@@ -1,4 +1,5 @@
 ﻿using Algorithms.Algorithms;
+using Algorithms.Algorithms.Sorters;
 using Benchmark.Configs;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
@@ -39,12 +40,12 @@ public class SorterBenchmark
     [Benchmark]
     public void QuickSort()
     {
-        Sorter.QuickSort(_array);
+        Sorters.QuickSortInPlace(_array);
     }
 
     [Benchmark]
     public void CountingSort()
     {
-        Sorter.CountingSort(_array, maxValue + 1);
+        Sorters.CountingSort(_array, maxValue + 1);
     }
 }

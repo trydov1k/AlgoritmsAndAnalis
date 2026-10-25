@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using Algorithms.Algorithms.Sorters;
+using BenchmarkDotNet.Attributes;
 using HomeWork1;
 using HomeWork1.Other;
 
@@ -20,6 +21,6 @@ public class Task12Benchmark
     [Benchmark]
     public void Solve()
     {
-        Task12.QuickSortInPlace(participants);
+        Sorters.QuickSortInPlace(participants);
     }
 }
