@@ -1,7 +1,7 @@
 ﻿using Algorithms.Algorithms.Sorters;
 using FluentAssertions;
 using HomeWork1;
-using HomeWork1.Other;
+using HomeWork1.TestCases;
 using NUnit.Framework;
 
 namespace Tests;

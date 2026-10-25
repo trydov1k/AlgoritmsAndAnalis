@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using HomeWork1;
-using HomeWork1.Other;
+using HomeWork1.TestCases;
 
 namespace Benchmark.HomeWork1Benchmarks;
 

@@ -1,5 +1,5 @@
-﻿using Benchmark.Other;
-using HomeWork1;
+﻿using HomeWork1;
+using HomeWork1.TestCases;
 
 namespace Tests;
 

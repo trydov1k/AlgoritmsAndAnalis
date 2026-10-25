@@ -1,4 +1,4 @@
-﻿namespace Benchmark.Other;
+﻿namespace HomeWork1.TestCases;
 
 public static class TestDataGenerator
 {

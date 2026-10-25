@@ -1,4 +1,4 @@
-﻿namespace HomeWork1.Other;
+﻿namespace HomeWork1.TestCases;
 
 public sealed class PolynomialCase(
     string name,
