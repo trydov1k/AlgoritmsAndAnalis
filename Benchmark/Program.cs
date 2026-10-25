@@ -20,7 +20,12 @@ using Perfolizer.Horology;
 //     sizeUnit: SizeUnit.B,
 //     hideMethods: true));
 
-BenchmarkRunner.Run<Task12Benchmark>(new MyConfig(
+// BenchmarkRunner.Run<Task12Benchmark>(new MyConfig(
+//     timeUnit: TimeUnit.Microsecond,
+//     sizeUnit: null,
+//     hideMethods: true));
+
+BenchmarkRunner.Run<Task14Benchmark>(new MyConfig(
     timeUnit: TimeUnit.Microsecond,
     sizeUnit: null,
     hideMethods: true));
