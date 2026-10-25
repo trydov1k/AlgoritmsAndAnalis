@@ -6,16 +6,17 @@ namespace Benchmark.HomeWork1Benchmarks;
 
 public class Task14Benchmark
 {
+    private Task14.Entry[] _entries;
+
     [ParamsSource(typeof(Task14Cases), nameof(Task14Cases.Cases))]
     public Task14Cases.EntryCase Data { get; set; } = null!;
-    
-    private Task14.Entry[] _entries;
+
     [IterationSetup]
     public void Setup()
     {
         _entries = Data.Entries.ToArray();
     }
-    
+
     [Benchmark]
     public void Solve()
     {

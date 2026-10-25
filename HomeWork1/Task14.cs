@@ -6,13 +6,13 @@ public static class Task14
 {
     public static void Sort()
     {
-        var n = int.Parse(Console.ReadLine());  // n <= 1000
-        var k =  int.Parse(Console.ReadLine());  // 1 <= k <= 10
-        var priorities  = Console.ReadLine()
+        var n = int.Parse(Console.ReadLine()); // n <= 1000
+        var k = int.Parse(Console.ReadLine()); // 1 <= k <= 10
+        var priorities = Console.ReadLine()
             .Split(' ', StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .ToArray();
-        
+
         var entries = new Entry[n];
 
         for (var i = 0; i < n; i++)
@@ -25,10 +25,7 @@ public static class Task14
                 priorities);
         }
 
-        foreach (var entry in Sort(entries))
-        {
-            Console.WriteLine(entry.Name);
-        }
+        foreach (var entry in Sort(entries)) Console.WriteLine(entry.Name);
     }
 
     public static Entry[] Sort(Entry[] entries)
@@ -36,9 +33,9 @@ public static class Task14
         Sorters.QuickSortInPlace(entries);
         return entries;
     }
-    
-    
-    public sealed class Entry(string name, int[] parameters, int[] priorities) 
+
+
+    public sealed class Entry(string name, int[] parameters, int[] priorities)
         : IComparable
     {
         public string Name { get; } = name;
@@ -54,11 +51,11 @@ public static class Task14
                     "Ожидался объект типа Entry.", nameof(obj));
 
             var first = this;
-            
-            foreach (var priority  in priorities)
+
+            foreach (var priority in priorities)
             {
                 var index = priority - 1;
-                
+
                 // По убыванию: большее значение идёт раньше.
                 var comparison =
                     second.Parameters[index].CompareTo(first.Parameters[index]);

@@ -46,6 +46,7 @@ public static class Task12
         public string Login { get; } = login.ToLower();
         public int Solved { get; } = solved;
         public int Penalty { get; } = penalty;
+
         public int CompareTo(object? obj)
         {
             return Compare(this, obj as Participant);
