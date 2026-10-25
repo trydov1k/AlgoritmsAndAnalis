@@ -32,15 +32,11 @@ public static partial class Sorters
 
             if (left < heapSize &&
                 array[left].CompareTo(array[largest]) > 0)
-            {
                 largest = left;
-            }
 
             if (right < heapSize &&
                 array[right].CompareTo(array[largest]) > 0)
-            {
                 largest = right;
-            }
 
             if (largest == root)
                 return;

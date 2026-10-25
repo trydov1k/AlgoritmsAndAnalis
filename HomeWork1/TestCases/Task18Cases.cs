@@ -2,34 +2,23 @@
 
 public class Task18Cases
 {
-    public sealed class VisitCase(
-        string name,
-        (int Arrival, int Departure)[] visits,
-        int expected)
-    {
-        public (int Arrival, int Departure)[] Visits { get; } = visits;
-        public int Expected { get; } = expected;
-
-        public override string ToString() => name;
-    }
-
     public static IEnumerable<VisitCase> Cases
     {
         get
         {
-            yield return new(
+            yield return new VisitCase(
                 "Standard",
                 [
-                    (540, 607),   // 09:00–10:07
-                    (620, 695),   // 10:20–11:35
-                    (720, 1020),  // 12:00–17:00
-                    (660, 690),   // 11:00–11:30
-                    (680, 750),   // 11:20–12:30
-                    (690, 1095)   // 11:30–18:15
+                    (540, 607), // 09:00–10:07
+                    (620, 695), // 10:20–11:35
+                    (720, 1020), // 12:00–17:00
+                    (660, 690), // 11:00–11:30
+                    (680, 750), // 11:20–12:30
+                    (690, 1095) // 11:30–18:15
                 ],
                 4);
 
-            yield return new(
+            yield return new VisitCase(
                 "SingleVisitor",
                 [
                     (540, 600)
@@ -37,7 +26,7 @@ public class Task18Cases
                 1);
 
             // Между посещениями есть перерывы.
-            yield return new(
+            yield return new VisitCase(
                 "NoOverlaps",
                 [
                     (540, 600),
@@ -46,7 +35,7 @@ public class Task18Cases
                 ],
                 1);
 
-            yield return new(
+            yield return new VisitCase(
                 "IdenticalVisits",
                 [
                     (540, 600),
@@ -57,7 +46,7 @@ public class Task18Cases
                 4);
 
             // Вложенные интервалы: все пересекаются в 10:30.
-            yield return new(
+            yield return new VisitCase(
                 "NestedVisits",
                 [
                     (540, 900),
@@ -68,7 +57,7 @@ public class Task18Cases
                 4);
 
             // В минуту ухода первого приходит второй.
-            yield return new(
+            yield return new VisitCase(
                 "ArrivalAtDepartureTime",
                 [
                     (540, 600),
@@ -77,7 +66,7 @@ public class Task18Cases
                 2);
 
             // Все трое присутствуют в минуту 600.
-            yield return new(
+            yield return new VisitCase(
                 "ZeroDurationVisits",
                 [
                     (600, 600),
@@ -87,7 +76,7 @@ public class Task18Cases
                 3);
 
             // Границы суток: 00:00 и 23:59.
-            yield return new(
+            yield return new VisitCase(
                 "DayBoundaries",
                 [
                     (0, 1439),
@@ -97,7 +86,7 @@ public class Task18Cases
                 2);
 
             // Порядок входных записей не влияет на результат.
-            yield return new(
+            yield return new VisitCase(
                 "UnorderedVisits",
                 [
                     (720, 780),
@@ -108,7 +97,7 @@ public class Task18Cases
                 3);
 
             // Утром максимум 2, вечером максимум 3.
-            yield return new(
+            yield return new VisitCase(
                 "MultiplePeaks",
                 [
                     (540, 600),
@@ -118,6 +107,20 @@ public class Task18Cases
                     (1140, 1230)
                 ],
                 3);
+        }
+    }
+
+    public sealed class VisitCase(
+        string name,
+        (int Arrival, int Departure)[] visits,
+        int expected)
+    {
+        public (int Arrival, int Departure)[] Visits { get; } = visits;
+        public int Expected { get; } = expected;
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

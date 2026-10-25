@@ -27,9 +27,7 @@ public static class Task25
 
             if (right < values.Length &&
                 values[parent] > values[right])
-            {
                 return false;
-            }
         }
 
         return true;

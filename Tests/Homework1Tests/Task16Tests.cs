@@ -8,7 +8,8 @@ namespace Tests.Homework1Tests;
 [TestFixture]
 public class Task16Tests
 {
-    [Test, TestCaseSource(typeof(Task16Cases), nameof(Task16Cases.Cases))]
+    [Test]
+    [TestCaseSource(typeof(Task16Cases), nameof(Task16Cases.Cases))]
     public void Solve_ReturnsExpectedSum(Task16Cases.SequenceCase data)
     {
         var result = Task16.Solve(

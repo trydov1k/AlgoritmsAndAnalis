@@ -16,7 +16,7 @@ public static class Task16
 
         Console.WriteLine(Solve(n, k, m, l));
     }
-    
+
     public static uint Solve(int n, uint k, uint m, uint l)
     {
         var values = GenerateSequence(n, k, m, l);
@@ -25,7 +25,7 @@ public static class Task16
 
         return SumOddPositions(values, l);
     }
-    
+
     private static uint[] GenerateSequence(int n, uint k, uint m, uint l)
     {
         var values = new uint[n];
@@ -36,7 +36,7 @@ public static class Task16
 
         return values;
     }
-    
+
     private static uint SumOddPositions(uint[] values, uint l)
     {
         ulong sum = 0;

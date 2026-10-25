@@ -1,5 +1,4 @@
-﻿using Algorithms.Algorithms.Sorters;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using HomeWork1;
 using HomeWork1.TestCases;
 
