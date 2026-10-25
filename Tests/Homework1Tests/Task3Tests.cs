@@ -1,7 +1,7 @@
 ﻿using HomeWork1;
 using HomeWork1.TestCases;
 
-namespace Tests;
+namespace Tests.Homework1Tests;
 
 public class Task3Tests
 {

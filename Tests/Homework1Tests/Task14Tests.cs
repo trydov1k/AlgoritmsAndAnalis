@@ -3,7 +3,7 @@ using HomeWork1;
 using HomeWork1.TestCases;
 using NUnit.Framework;
 
-namespace Tests;
+namespace Tests.Homework1Tests;
 
 public class Task14Tests
 {

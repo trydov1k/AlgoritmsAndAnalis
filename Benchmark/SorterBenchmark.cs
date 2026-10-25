@@ -1,5 +1,4 @@
-﻿using Algorithms.Algorithms;
-using Algorithms.Algorithms.Sorters;
+﻿using Algorithms.Algorithms.Sorters;
 using Benchmark.Configs;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
@@ -34,11 +33,11 @@ public class SorterBenchmark
     [Benchmark]
     public void MergeSort()
     {
-        Sorter.MergeSort(_array);
+        Sorters.MergeSort(_array);
     }
 
     [Benchmark]
-    public void QuickSort()
+    public void QuickSortInPlace()
     {
         Sorters.QuickSortInPlace(_array);
     }
