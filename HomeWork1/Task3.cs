@@ -1,4 +1,4 @@
-﻿using Algorithms.Algorithms;
+﻿using Algorithms.Algorithms.Sorters;
 
 namespace HomeWork1;
 
@@ -20,7 +20,7 @@ public static class Task3
             if (!set.Add(num)) set.Remove(num);
         }
 
-        var result = Sorter.CountingSort(set.ToArray(), 20001);
+        var result = Sorters.CountingSort(set.ToArray(), 20001);
 
         return result;
     }

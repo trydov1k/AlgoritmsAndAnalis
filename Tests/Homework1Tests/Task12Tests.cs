@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Algorithms.Algorithms.Sorters;
+using FluentAssertions;
 using HomeWork1;
 using HomeWork1.Other;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ public class Task12Tests
     {
         var participants = data.Participants.ToArray();
 
-        Task12.QuickSortInPlace(participants);
+        Sorters.QuickSortInPlace(participants);
 
         var sortedLogins = participants
             .Select(participant => participant.Login)
