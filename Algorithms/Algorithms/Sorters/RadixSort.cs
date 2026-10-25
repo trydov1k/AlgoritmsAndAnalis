@@ -7,37 +7,28 @@ public static partial class Sorters
         var buffer = new uint[values.Length];
         var counts = new int[1 << 16];
 
-        // Первый проход: из values в buffer по младшим 16 битам.
-        SortByDigits(values, buffer, counts, 0);
-
-        // Второй проход: обратно в values по старшим 16 битам.
-        SortByDigits(buffer, values, counts, 16);
+        CountingSort(values, buffer, counts, 0);
+        CountingSort(buffer, values, counts, 16);
     }
-    
-    private static void SortByDigits(
+
+    private static void CountingSort(
         uint[] source,
         uint[] destination,
         int[] counts,
         int shift)
     {
+        const uint mask = 0xFFFFU;
+
         Array.Clear(counts, 0, counts.Length);
 
-        CountDigits(source, counts, shift);
-        ConvertCountsToPositions(counts);
-        DistributeValues(source, destination, counts, shift);
-    }
-
-    private static void CountDigits(uint[] values, int[] counts, int shift)
-    {
-        foreach (var value in values)
+        // Считаем количество элементов в каждой группе.
+        foreach (var value in source)
         {
-            var digit = GetDigit(value, shift);
+            var digit = (int)((value >> shift) & mask);
             counts[digit]++;
         }
-    }
 
-    private static void ConvertCountsToPositions(int[] counts)
-    {
+        // Преобразуем количества в начальные позиции групп.
         var position = 0;
 
         for (var digit = 0; digit < counts.Length; digit++)
@@ -46,25 +37,12 @@ public static partial class Sorters
             counts[digit] = position;
             position += count;
         }
-    }
 
-    private static void DistributeValues(
-        uint[] source,
-        uint[] destination,
-        int[] positions,
-        int shift)
-    {
+        // Раскладываем элементы, сохраняя порядок внутри групп.
         foreach (var value in source)
         {
-            var digit = GetDigit(value, shift);
-
-            destination[positions[digit]] = value;
-            positions[digit]++;
+            var digit = (int)((value >> shift) & mask);
+            destination[counts[digit]++] = value;
         }
-    }
-
-    private static int GetDigit(uint value, int shift)
-    {
-        return (int)((value >> shift) & 0xFFFFU);
     }
 }
