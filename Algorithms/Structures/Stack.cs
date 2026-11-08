@@ -3,7 +3,7 @@
 public class Stack<T>
 {
     private readonly List<T> _items = [];
-    private int Count => _items.Count;
+    public int Count => _items.Count;
 
     public void Push(T item)
     {

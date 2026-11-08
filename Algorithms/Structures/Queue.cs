@@ -42,6 +42,9 @@ public class Queue<T>
 
         return Head.Value;
     }
+    
+    public bool IsEmpty() 
+        => Head == null;
 
     private class Node<T>
     {
