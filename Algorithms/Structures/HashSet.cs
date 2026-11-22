@@ -5,7 +5,7 @@ public class HashSet<TValue>
 {
     private readonly HashTableChaining<TValue, bool> _table = new(16);
 
-    public int Count => _table.Size();
+    public int Count => _table.Size;
 
     public bool Add(TValue value)
     {

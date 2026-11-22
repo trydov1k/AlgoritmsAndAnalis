@@ -10,8 +10,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        BenchmarkRunner.Run<Task9Benchmark>(new MyConfig(
-            timeUnit: TimeUnit.Nanosecond,
+        BenchmarkRunner.Run<Task11Benchmark>(new MyConfig(
+            timeUnit: TimeUnit.Microsecond,
             sizeUnit: SizeUnit.B,
             hideMethods: true));
     }

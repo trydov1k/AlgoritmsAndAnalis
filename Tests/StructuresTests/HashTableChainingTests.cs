@@ -17,7 +17,7 @@ public class HashTableChainingTests
     {
         var table = new HashTableChaining<int, string>(4);
 
-        Assert.Equal(0, table.Size());
+        Assert.Equal(0, table.Size);
         Assert.False(table.ContainsKey(1));
     }
 
@@ -30,7 +30,7 @@ public class HashTableChainingTests
 
         Assert.Equal("one", table.Get(1));
         Assert.True(table.ContainsKey(1));
-        Assert.Equal(1, table.Size());
+        Assert.Equal(1, table.Size);
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class HashTableChainingTests
         table.Put(1, "new");
 
         Assert.Equal("new", table.Get(1));
-        Assert.Equal(1, table.Size());
+        Assert.Equal(1, table.Size);
     }
 
     [Fact]
@@ -54,7 +54,7 @@ public class HashTableChainingTests
         Assert.Throws<KeyNotFoundException>(() => table.Get(2));
         Assert.Throws<KeyNotFoundException>(() => table.Remove(2));
         Assert.False(table.ContainsKey(2));
-        Assert.Equal(1, table.Size());
+        Assert.Equal(1, table.Size);
         Assert.Equal("one", table.Get(1));
     }
 
@@ -73,7 +73,7 @@ public class HashTableChainingTests
         }
 
         Assert.False(table.ContainsKey(new CollisionKey(99)));
-        Assert.Equal(5, table.Size());
+        Assert.Equal(5, table.Size);
     }
 
     [Fact]
@@ -89,7 +89,7 @@ public class HashTableChainingTests
         Assert.Equal("one", table.Get(new CollisionKey(1)));
         Assert.Equal("updated", table.Get(new CollisionKey(2)));
         Assert.Equal("three", table.Get(new CollisionKey(3)));
-        Assert.Equal(3, table.Size());
+        Assert.Equal(3, table.Size);
     }
 
     [Theory]
@@ -105,7 +105,7 @@ public class HashTableChainingTests
         var removedValue = table.Remove(new CollisionKey(removedId));
 
         Assert.Equal($"value-{removedId}", removedValue);
-        Assert.Equal(2, table.Size());
+        Assert.Equal(2, table.Size);
         Assert.False(table.ContainsKey(new CollisionKey(removedId)));
         Assert.Throws<KeyNotFoundException>(() => table.Get(new CollisionKey(removedId)));
 
@@ -121,14 +121,14 @@ public class HashTableChainingTests
         table.Put(1, "one");
 
         Assert.Equal("one", table.Remove(1));
-        Assert.Equal(0, table.Size());
+        Assert.Equal(0, table.Size);
         Assert.False(table.ContainsKey(1));
         Assert.Throws<KeyNotFoundException>(() => table.Remove(1));
 
         table.Put(1, "new");
 
         Assert.Equal("new", table.Get(1));
-        Assert.Equal(1, table.Size());
+        Assert.Equal(1, table.Size);
     }
 
     [Fact]
@@ -139,7 +139,7 @@ public class HashTableChainingTests
         for (var i = 0; i < 100; i++)
             table.Put(i, $"value-{i}");
 
-        Assert.Equal(100, table.Size());
+        Assert.Equal(100, table.Size);
 
         for (var i = 0; i < 100; i++)
             Assert.Equal($"value-{i}", table.Get(i));
@@ -147,7 +147,7 @@ public class HashTableChainingTests
         for (var i = 0; i < 100; i += 2)
             Assert.Equal($"value-{i}", table.Remove(i));
 
-        Assert.Equal(50, table.Size());
+        Assert.Equal(50, table.Size);
 
         for (var i = 0; i < 100; i++)
         {
@@ -165,7 +165,7 @@ public class HashTableChainingTests
         for (var i = 0; i < 50; i++)
             table.Put(new CollisionKey(i), i * 10);
 
-        Assert.Equal(50, table.Size());
+        Assert.Equal(50, table.Size);
 
         for (var i = 0; i < 50; i++)
             Assert.Equal(i * 10, table.Get(new CollisionKey(i)));
@@ -184,7 +184,7 @@ public class HashTableChainingTests
         Assert.Equal("value", table.Get(key));
         Assert.True(table.ContainsKey(key));
         Assert.Equal("value", table.Remove(key));
-        Assert.Equal(0, table.Size());
+        Assert.Equal(0, table.Size);
     }
 
     [Fact]
@@ -196,11 +196,11 @@ public class HashTableChainingTests
 
         Assert.True(table.ContainsKey(1));
         Assert.Null(table.Get(1));
-        Assert.Equal(1, table.Size());
+        Assert.Equal(1, table.Size);
 
         Assert.Null(table.Remove(1));
         Assert.False(table.ContainsKey(1));
-        Assert.Equal(0, table.Size());
+        Assert.Equal(0, table.Size);
     }
 
     private sealed class CollisionKey(int id)

@@ -7,7 +7,6 @@ public class HashTableChaining<TKey, TValue>
     where TKey : notnull
 {
     private const double MaxLoadFactor = 0.75;
-    private int _currentSize;
 
     private Node?[] _table;
 
@@ -16,6 +15,8 @@ public class HashTableChaining<TKey, TValue>
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(capacity);
         _table = new Node[capacity];
     }
+
+    public int Size { get; private set; }
 
     private int GetHash(TKey key)
     {
@@ -53,8 +54,8 @@ public class HashTableChaining<TKey, TValue>
 
         _table[index] = new Node(key, value, _table[index]);
 
-        _currentSize++;
-        if (_currentSize >= _table.Length * MaxLoadFactor)
+        Size++;
+        if (Size >= _table.Length * MaxLoadFactor)
             Resize(2 * _table.Length);
     }
 
@@ -62,7 +63,7 @@ public class HashTableChaining<TKey, TValue>
     {
         var oldTable = _table;
         _table = new Node[newSize];
-        _currentSize = 0;
+        Size = 0;
         foreach (var node in oldTable)
         {
             var tmpNode = node;
@@ -87,7 +88,7 @@ public class HashTableChaining<TKey, TValue>
                     _table[index] = current.Next;
                 else
                     previous.Next = current.Next;
-                _currentSize--;
+                Size--;
                 return current.Value;
             }
 
@@ -96,11 +97,6 @@ public class HashTableChaining<TKey, TValue>
         }
 
         throw new KeyNotFoundException($"Key {key} not found");
-    }
-
-    public int Size()
-    {
-        return _currentSize;
     }
 
     public bool ContainsKey(TKey key)
