@@ -43,7 +43,6 @@ public static class Task6
         var currentPages = 0;
 
         foreach (var pages in chapters)
-        {
             if (currentPages + pages > maxPages)
             {
                 volumes++;
@@ -56,7 +55,6 @@ public static class Task6
             {
                 currentPages += pages;
             }
-        }
 
         return true;
     }
