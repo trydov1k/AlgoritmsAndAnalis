@@ -10,7 +10,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        BenchmarkRunner.Run<Task19Benchmark>(new MyConfig(
+        BenchmarkRunner.Run<Task22Benchmark>(new MyConfig(
             timeUnit: TimeUnit.Microsecond,
             sizeUnit: SizeUnit.B,
             hideMethods: true));
